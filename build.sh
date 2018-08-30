@@ -11,6 +11,7 @@ done
 PNGDIR="${PWD}/libpng-1.5.4"
 PNGINC="${PNGDIR}/proto/usr/local/include"
 PNGLIB="${PNGDIR}/proto/usr/local/lib"
+PREFIX="${PREFIX:-/smartdc}"
 
 if [[ ! -d ${PNGDIR} ]]; then
     (curl -k https://download.joyent.com/pub/kvm-cmd/libpng-1.5.4.tar.gz | \
@@ -39,12 +40,14 @@ CC="${CC:-${DESTDIR}/usr/bin/gcc}"
 XCFLAGS="-fno-builtin -I${PNGINC} -isystem ${DESTDIR}/usr/include -msave-args"
 XLDFLAGS="-nodefaultlibs -L${PNGLIB} -L${DESTDIR}/usr/lib/amd64 -L${DESTDIR}/lib/amd64"
 XLDFLAGS="${XLDFLAGS} -Wl,-zfatal-warnings -Wl,-zassert-deflib"
-XLDFLAGS="${XLDFLAGS} -lz -lm -lc -lvnd"
+XLDFLAGS="${XLDFLAGS} -lz -lm -lc"
 ./configure \
     --cc=$CC \
     --extra-cflags="${XCFLAGS}" \
     --extra-ldflags="${XLDFLAGS}" \
-    --prefix=/smartdc \
+    --prefix=$PREFIX \
+    --sysconfdir=/etc \
+    --install=/usr/gnu/bin/install \
     --audio-card-list= \
     --audio-drv-list= \
     --disable-bluez \
@@ -75,6 +78,7 @@ fi
 #
 KERNEL_SOURCE="${KERNEL_SOURCE:-$(pwd)/../../illumos}"
 CTFBINDIR="$KERNEL_SOURCE"/usr/src/tools/proto/root_i386-nd/opt/onbld/bin/i386
+export CTFBINDIR
 export PATH="$PATH:$CTFBINDIR"
 
 if [[ -z "$CONFIGURE_ONLY" ]]; then

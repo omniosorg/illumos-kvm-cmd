@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-#include <curses.h>
+#include <ncurses/curses.h>
 
 #ifndef _WIN32
 #include <signal.h>

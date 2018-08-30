@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-#include <curses.h>
+#include <ncurses/curses.h>
 #include "keymaps.h"
 
 
