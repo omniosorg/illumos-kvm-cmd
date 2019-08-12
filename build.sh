@@ -14,7 +14,7 @@ PNGLIB="${PNGDIR}/proto/usr/local/lib"
 PREFIX="${PREFIX:-/smartdc}"
 
 if [[ ! -d ${PNGDIR} ]]; then
-    (curl -k https://download.joyent.com/pub/kvm-cmd/libpng-1.5.4.tar.gz | \
+    (curl -k https://mirrors.omniosce.org/libpng/libpng-1.5.4.tar.gz | \
         gtar -zxf -)
     if [[ $? != "0" || ! -d ${PNGDIR} ]]; then
         echo "Failed to get libpng."
