@@ -95,9 +95,10 @@
 #endif
 
 /* Approximate O_DIRECT with O_DSYNC if O_DIRECT isn't available */
-#ifndef O_DIRECT
-#define O_DIRECT O_DSYNC
+#ifdef O_DIRECT
+#undef O_DIRECT
 #endif
+#define O_DIRECT O_DSYNC
 
 #define FTYPE_FILE   0
 #define FTYPE_CD     1
