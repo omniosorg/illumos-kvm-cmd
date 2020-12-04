@@ -37,7 +37,7 @@ if [[ ! -e ${PNGLIB}/libpng.a ]]; then
 	    CC="${CC:-${DESTDIR}/usr/bin/gcc}" \
 	    LDFLAGS="-m64 -L${DESTDIR}/usr/lib/amd64 -L${DESTDIR}/lib/amd64" \
 	    CPPFLAGS="-isystem ${DESTDIR}/usr/include" \
-	    CFLAGS="-m64 $XCFLAGS" ./configure --disable-shared && \
+	    CFLAGS="-m64 -gdwarf-2 $XCFLAGS" ./configure --disable-shared && \
 	    make && \
 	    mkdir -p ${PNGDIR}/proto && \
 	    make DESTDIR=${PNGDIR}/proto install)
