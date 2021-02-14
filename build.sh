@@ -23,7 +23,7 @@ if [[ "$PRIMARY_COMPILER_VER" -gt 4 ]]; then
 fi
 
 if [[ ! -d ${PNGDIR} ]]; then
-	(curl -k https://mirrors.omniosce.org/libpng/libpng-1.5.4.tar.gz | \
+	(curl -L https://mirrors.omnios.org/libpng/libpng-1.5.4.tar.gz | \
 	    gtar -zxf -)
 	if [[ $? != "0" || ! -d ${PNGDIR} ]]; then
 		echo "Failed to get libpng."
