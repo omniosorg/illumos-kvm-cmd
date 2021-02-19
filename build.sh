@@ -8,14 +8,15 @@ for dir in seabios vgabios kvm/test; do
 	    cp roms/${dir}/config.mak.tmpl roms/${dir}/config.mak
 done
 
-PNGDIR="${PWD}/libpng-1.5.4"
+PNGVER="1.6.37"
+PNGDIR="${PWD}/libpng-${PNGVER}"
 PNGINC="${PNGDIR}/proto/usr/local/include"
 PNGLIB="${PNGDIR}/proto/usr/local/lib"
 PREFIX="${PREFIX:-/smartdc}"
 
 if [[ ! -d ${PNGDIR} ]]; then
-    (curl -k https://download.joyent.com/pub/kvm-cmd/libpng-1.5.4.tar.gz | \
-        gtar -zxf -)
+    (curl -L https://mirrors.omnios.org/libpng/libpng-${PNGVER}.tar.xz | \
+        gtar -Jxf -)
     if [[ $? != "0" || ! -d ${PNGDIR} ]]; then
         echo "Failed to get libpng."
         rm -rf ${PNGDIR}
