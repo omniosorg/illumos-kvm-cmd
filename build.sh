@@ -8,7 +8,7 @@ for dir in seabios vgabios kvm/test; do
 	    cp roms/${dir}/config.mak.tmpl roms/${dir}/config.mak
 done
 
-PNGVER="1.6.47"
+PNGVER="1.6.52"
 PNGDIR="${PWD}/libpng-${PNGVER}"
 PNGINC="${PNGDIR}/proto/usr/local/include"
 PNGLIB="${PNGDIR}/proto/usr/local/lib"
